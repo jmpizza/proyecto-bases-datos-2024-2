@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto de Base de Datos - Panadería y Pastelería
 
-## Getting Started
+Este proyecto se desarrolla como parte de la materia de Bases de Datos en el segundo semestre de 2024 en la Universidad Nacional de Colombia.
 
-First, run the development server:
+## Descripción del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+El objetivo de este proyecto es diseñar e implementar un sistema de base de datos para mejorar la gestión operativa de una panadería de barrio ubicada en Bogotá. La panadería ofrece una variedad de productos de panadería y pastelería, incluyendo productos propios y de terceros. Actualmente, muchos de sus procesos se gestionan manualmente, lo que genera ineficiencias en la administración del inventario, las ventas y la contabilidad.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades del Sistema
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Gestión de Inventarios:** Registro y control de materias primas y productos externos para minimizar pérdidas y optimizar el reabastecimiento.
+- **Registro de Producción:** Seguimiento de los procesos de elaboración de productos para mejorar la planificación y evitar interrupciones.
+- **Control de Ventas:** Implementación de un sistema para registrar ventas detalladas y facilitar el análisis de rentabilidad.
+- **Administración de Empleados:** Gestión de roles y tareas del personal para mejorar la eficiencia operativa.
+- **Gestión Contable:** Registro automatizado de ingresos y egresos para mejorar la toma de decisiones financieras.
+- **Registro de Clientes:** Almacenamiento de información de clientes para identificar patrones de consumo y mejorar estrategias de fidelización.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tecnologías Utilizadas
 
-## Learn More
+- **Base de Datos:** MySQL
+- **Backend:** Node.js con Express
+- **Frontend:** Next.js (React)
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación y Uso
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clona este repositorio:
+   ```sh
+   git clone https://github.com/jmpizza/proyecto-bases-datos-2024-2.git
+   ```
+2. Ingresa al directorio del proyecto:
+   ```sh
+   cd proyecto-bases-datos-2024-2
+   ```
+3. Instala las dependencias:
+   ```sh
+   npm install
+   ```
+4. Configura las variables de entorno en un archivo `.env`.
+5. Inicia el servidor:
+   ```sh
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Licencia
 
-## Deploy on Vercel
+Este proyecto se encuentra bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
