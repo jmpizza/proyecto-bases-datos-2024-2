@@ -22,6 +22,11 @@ El objetivo de este proyecto es diseñar e implementar un sistema de base de dat
 - **Frontend:** Next.js (React)
 
 ## Instalación y Uso
+### Requisitos previos
+- [Node.js](https://nodejs.org/) instalado (v18 o superior).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado y en ejecución.
+
+### Pasos para ejecutar el proyecto
 
 1. Clona este repositorio:
    ```sh
@@ -35,8 +40,19 @@ El objetivo de este proyecto es diseñar e implementar un sistema de base de dat
    ```sh
    npm install
    ```
-4. Configura las variables de entorno en un archivo `.env`.
-5. Inicia el servidor:
+4. Crea un archivo .env.local en la raíz del proyecto y agrega las siguientes variables de entorno:
+   ```sh
+   DB_HOST=localhost
+   DB_PORT=3307
+   DB_USER=root
+   DB_PASSWORD=root
+   DB_NAME=elbuengusto
+   ```
+5. Inicia el contendor de docker (Docker Desktop debe estar en ejecución)
+   ```sh
+   npm tun docker:up
+   ```
+6. Inicia el servidor:
    ```sh
    npm run dev
    ```
