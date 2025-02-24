@@ -143,21 +143,26 @@ JOIN MATERIA m ON r.mat_codigo = m.mat_codigo;
 -- 11. Vista Historial de Ventas
 CREATE VIEW VISTA_COMPLETO_VENTAS AS
 SELECT 
-    v.ven_id_venta AS ID_Venta,
-    v.ven_fecha AS Fecha_Hora,
-    v.ven_tipo_pago AS Metodo_Pago,
-    v.ven_precio_total AS Total,
-    CONCAT(c.per_nombre, ' ', c.per_apellido) AS Cliente,
-    CONCAT(e.per_nombre, ' ', e.per_apellido) AS Cajero,
-    p.pro_nombre AS Producto,
-    dv.det_cantidad_producto AS Cantidad,
-    p.pro_precio_venta AS Precio_Unitario,
-    prm.prm_nombre AS Promocion_Aplicada
+    v.ven_id_venta,
+    v.ven_precio_total,
+    v.ven_hora,
+    v.ven_fecha,
+    v.ven_tipo_pago,
+    v.ven_tipo,
+    v.per_documento AS cliente_documento,
+    GROUP_CONCAT(
+        CONCAT(
+            COALESCE(p.pro_nombre, pe.pre_tipo, pr.prm_nombre),
+            ' (',
+            dv.det_cantidad_producto,
+            ')'
+        )
+        SEPARATOR ', '
+    ) AS productos_vendidos
 FROM VENTA v
-JOIN DETALLE_VENTA dv ON v.ven_id_venta = dv.ven_id_venta
+LEFT JOIN DETALLE_VENTA dv ON v.ven_id_venta = dv.ven_id_venta
 LEFT JOIN PRODUCTO p ON dv.pro_codigo = p.pro_codigo
-LEFT JOIN PROMOCION prm ON dv.prm_id = prm.prm_id
-JOIN CLIENTE cl ON v.per_documento = cl.per_documento
-JOIN PERSONA c ON cl.per_documento = c.per_documento
-JOIN PERSONAL pl ON v.pes_documento = pl.pes_documento
-JOIN PERSONA e ON pl.pes_documento = e.per_documento;
+LEFT JOIN PRODUCTO_EMPRESA_EXTERNA pe ON dv.pre_codigo = pe.pre_codigo
+LEFT JOIN PROMOCION pr ON dv.prm_id = pr.prm_id
+GROUP BY v.ven_id_venta;
+
