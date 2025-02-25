@@ -1,4 +1,5 @@
-use elbuengusto ;
+use ElBuenGusto ;
+SET NAMES 'utf8mb4';
 
 DELIMITER //
 
@@ -229,14 +230,14 @@ BEGIN
 END //
 
 /* ========== PROCEDIMIENTOS PARA CLIENTES ========== */
-CREATE PROCEDURE ObtenerVentas()
+CREATE PROCEDURE ObtenerVentas(IN documento INT)
 BEGIN
     SELECT 
         ven_id_venta,
         ven_tipo_pago,
         productos_vendidos,
         ven_precio_total
-    FROM Vista_Ventas;
+    FROM VISTA_COMPLETO_VENTAS WHERE cliente_documento = documento;
 END //
 
 DELIMITER ;

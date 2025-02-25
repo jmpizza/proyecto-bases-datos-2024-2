@@ -1,130 +1,179 @@
 USE ElBuenGusto ;
+SET NAMES 'utf8mb4';
 
 -- Insercion de empresas externas --
-INSERT INTO ElBuenGusto.`EMPRESA_EXTERNA` 
-(emp_nit, emp_nombre, emp_correo_electronico, emp_telefono)
+-- 1. Inserción de empresas externas
+INSERT INTO ElBuenGusto.EMPRESA_EXTERNA (emp_nit, emp_nombre, emp_correo_electronico, emp_telefono)
 VALUES
-(890123456, 'Harinas del Valle S.A.S.', 'ventas@harinasdelvalle.com.co', '601-2345678'),
-(900234567, 'Lácteos Frescos Ltda.', 'contacto@lacteosfrescos.co', '315-7890123'),
-(891234568, 'Dulces y Más S.A.', 'info@dulcesymas.com', '607-8912345'),
-(902345679, 'Café Premium de Colombia', 'proveedores@cafepremium.com.co', '320-4567890'),
-(893456780, 'Empaques Seguros S.A.S.', 'servicioalcliente@empaqueseguro.com', '601-3456789'),
-(904567891, 'Chocolates Artesanales Ltda.', 'pedidos@chocoartesanal.co', '317-8901234'),
-(895678902, 'Distribuidora Azucarera Nacional', 'ventas@azucarnacional.com', '607-4561237'),
-(906789013, 'Frutos Secos del Caribe S.A.', 'contacto@frutosecoscaribe.com', '318-5678901'),
-(897890124, 'Equipos Panaderos S.A.S.', 'cotizaciones@equipospanaderos.co', '601-6789012'),
-(908901235, 'Sabores Naturales Ltda.', 'info@saboresnaturales.com.co', '310-2345678'),
-(909012346, 'Coca-Cola Femsa Colombia S.A.', 'proveedores.ccf@femsa.com.co', '601-8001234'),
-(910123457, 'Snacks Andinos Ltda. (Distribuidor Margarita)', 'pedidos@snacksandinos.co', '315-6789012'),
-(911234568, 'Pepsico Alimentos Colombia S.A.S. (Papas Margarita)', 'contacto.colombia@pepsico.com', '01800-5195195'),
-(912345679, 'Distribuidora de Bebidas La Brisa', 'ventas@labrisabebidas.com.co', '320-1234567'),
-(913456780, 'Super Ricas Snacks S.A.S.', 'atencion@superricas.co', '601-3456789');
+  (890123456, 'Harinas del Valle S.A.S.', 'ventas@harinasdelvalle.com.co', '601-2345678'),
+  (900234567, 'Lácteos Frescos Ltda.', 'contacto@lacteosfrescos.co', '315-7890123'),
+  (891234568, 'Dulces y Más S.A.', 'info@dulcesymas.com', '607-8912345'),
+  (902345679, 'Café Premium de Colombia', 'proveedores@cafepremium.com.co', '320-4567890'),
+  (893456780, 'Empaques Seguros S.A.S.', 'servicioalcliente@empaqueseguro.com', '601-3456789'),
+  (904567891, 'Chocolates Artesanales Ltda.', 'pedidos@chocoartesanal.co', '317-8901234'),
+  (895678902, 'Distribuidora Azucarera Nacional', 'ventas@azucarnacional.com', '607-4561237'),
+  (906789013, 'Frutos Secos del Caribe S.A.', 'contacto@frutosecoscaribe.com', '318-5678901'),
+  (897890124, 'Equipos Panaderos S.A.S.', 'cotizaciones@equipospanaderos.co', '601-6789012'),
+  (908901235, 'Sabores Naturales Ltda.', 'info@saboresnaturales.com.co', '310-2345678'),
+  (909012346, 'Coca-Cola Femsa Colombia S.A.', 'proveedores.ccf@femsa.com.co', '601-8001234'),
+  (910123457, 'Snacks Andinos Ltda. (Distribuidor Margarita)', 'pedidos@snacksandinos.co', '315-6789012'),
+  (911234568, 'Pepsico Alimentos Colombia S.A.S. (Papas Margarita)', 'contacto.colombia@pepsico.com', '01800-5195195'),
+  (912345679, 'Distribuidora de Bebidas La Brisa', 'ventas@labrisabebidas.com.co', '320-1234567'),
+  (913456780, 'Super Ricas Snacks S.A.S.', 'atencion@superricas.co', '601-3456789');
 
--- Insersion de personas --
-INSERT INTO ElBuenGusto.`PERSONA` 
-(per_documento, per_nombre, per_apellido, per_correo_electronico)
+-- 2. Inserción de personas (tanto gerentes como proveedores)
+INSERT INTO ElBuenGusto.PERSONA 
+  (per_documento, per_nombre, per_apellido, per_correo_electronico)
 VALUES
-
--- Gerentes
-(108567890, 'Antonio', 'Salazar', 'antonio.salazar@gmail.com'),
-(108678901, 'Beatriz', 'Morales', 'beatriz.morales@hotmail.com'),
-(108789012, 'José', 'González', 'jose.gonzalez@outlook.com'),
-(108890123, 'Verónica', 'Díaz', 'veronica.diaz@yahoo.com'),
-(108901234, 'Carlos', 'Martínez', 'carlos.martinez@live.com'),
-(109012345, 'Laura', 'Rodríguez', 'laura.rodriguez@gmail.com'),
-(109123456, 'Marcos', 'Gutiérrez', 'marcos.gutierrez@icloud.com'),
-(109234567, 'Raquel', 'Cordero', 'raquel.cordero@protonmail.com'),
-(109345678, 'José Luis', 'Fernández', 'joseluis.fernandez@hotmail.com'),
-
--- proveedores
-(106012345, 'Alejandro', 'Torres', 'alejandro.torres@gmail.com'),
-(106123456, 'Carolina', 'Hernández', 'carolina.hernandez@hotmail.com'),
-(106234567, 'Gabriel', 'Martínez', 'gabriel.martinez@outlook.com'),
-(106345678, 'Verónica', 'López', 'veronica.lopez@yahoo.com'),
-(106456789, 'Héctor', 'Rodríguez', 'hector.rodriguez@gmail.com'),
-(106567890, 'Santiago', 'Pérez', 'santiago.perez@live.com'),
-(106678901, 'Margarita', 'González', 'margarita.gonzalez@gmail.com'),
-(106789012, 'Ricardo', 'Jiménez', 'ricardo.jimenez@outlook.com'),
-(106890123, 'Paula', 'Castillo', 'paula.castillo@icloud.com'),
-(106901234, 'Luis', 'Sánchez', 'luis.sanchez@hotmail.com'),
-(107012345, 'María José', 'Vega', 'mariajose.vega@gmail.com'),
-(107123456, 'Carlos Eduardo', 'Gutiérrez', 'carlos.gutierrez@yahoo.com'),
-(107234567, 'Sofía', 'Ramírez', 'sofia.ramirez@hotmail.com'),
-(107345678, 'Luis Alfonso', 'Reyes', 'luis.reyes@outlook.com'),
-(107456789, 'Andrés Felipe', 'Torres', 'andres.torres@gmail.com'),
-(107567890, 'Natalia', 'Martínez', 'natalia.martinez@live.com'),
-(107678901, 'Alejandra', 'González', 'alejandra.gonzalez@icloud.com'),
-(107789012, 'Pedro', 'Sánchez', 'pedro.sanchez@protonmail.com'),
-(107890123, 'Juan Pablo', 'Rodríguez', 'juan.rodriguez@gmail.com'),
-(107901234, 'Mónica', 'Hernández', 'monica.hernandez@hotmail.com'),
-(108012345, 'Eduardo', 'Ramírez', 'eduardo.ramirez@gmail.com'),
-(108123456, 'Victoria', 'Cordero', 'victoria.cordero@outlook.com'),
-(108234567, 'Gabriela', 'López', 'gabriela.lopez@yahoo.com'),
-(108345678, 'Juliana', 'Méndez', 'juliana.mendez@live.com'),
-(108456789, 'Ricardo', 'García', 'ricardo.garcia@gmail.com'),
+  -- Gerentes
+  (108567890, 'Antonio', 'Salazar', 'antonio.salazar@gmail.com'),
+  (108678901, 'Beatriz', 'Morales', 'beatriz.morales@hotmail.com'),
+  (108789012, 'José', 'González', 'jose.gonzalez@outlook.com'),
+  (108890123, 'Verónica', 'Díaz', 'veronica.diaz@yahoo.com'),
+  (108901234, 'Carlos', 'Martínez', 'carlos.martinez@live.com'),
+  (109012345, 'Laura', 'Rodríguez', 'laura.rodriguez@gmail.com'),
+  (109123456, 'Marcos', 'Gutiérrez', 'marcos.gutierrez@icloud.com'),
+  (109234567, 'Raquel', 'Cordero', 'raquel.cordero@protonmail.com'),
+  (109345678, 'José Luis', 'Fernández', 'joseluis.fernandez@hotmail.com'),
+  
+  -- Proveedores
+  (106012345, 'Alejandro', 'Torres', 'alejandro.torres@gmail.com'),
+  (106123456, 'Carolina', 'Hernández', 'carolina.hernandez@hotmail.com'),
+  (106234567, 'Gabriel', 'Martínez', 'gabriel.martinez@outlook.com'),
+  (106345678, 'Verónica', 'López', 'veronica.lopez@yahoo.com'),
+  (106456789, 'Héctor', 'Rodríguez', 'hector.rodriguez@gmail.com'),
+  (106567890, 'Santiago', 'Pérez', 'santiago.perez@live.com'),
+  (106678901, 'Margarita', 'González', 'margarita.gonzalez@gmail.com'),
+  (106789012, 'Ricardo', 'Jiménez', 'ricardo.jimenez@outlook.com'),
+  (106890123, 'Paula', 'Castillo', 'paula.castillo@icloud.com'),
+  (106901234, 'Luis', 'Sánchez', 'luis.sanchez@hotmail.com'),
+  (107012345, 'María José', 'Vega', 'mariajose.vega@gmail.com'),
+  (107123456, 'Carlos Eduardo', 'Gutiérrez', 'carlos.gutierrez@yahoo.com'),
+  (107234567, 'Sofía', 'Ramírez', 'sofia.ramirez@hotmail.com'),
+  (107345678, 'Luis Alfonso', 'Reyes', 'luis.reyes@outlook.com'),
+  (107456789, 'Andrés Felipe', 'Torres', 'andres.torres@gmail.com'),
+  (107567890, 'Natalia', 'Martínez', 'natalia.martinez@live.com'),
+  (107678901, 'Alejandra', 'González', 'alejandra.gonzalez@icloud.com'),
+  (107789012, 'Pedro', 'Sánchez', 'pedro.sanchez@protonmail.com'),
+  (107890123, 'Juan Pablo', 'Rodríguez', 'juan.rodriguez@gmail.com'),
+  (107901234, 'Mónica', 'Hernández', 'monica.hernandez@hotmail.com'),
+  (108012345, 'Eduardo', 'Ramírez', 'eduardo.ramirez@gmail.com'),
+  (108123456, 'Victoria', 'Cordero', 'victoria.cordero@outlook.com'),
+  (108234567, 'Gabriela', 'López', 'gabriela.lopez@yahoo.com'),
+  (108345678, 'Juliana', 'Méndez', 'juliana.mendez@live.com'),
+  (108456789, 'Ricardo', 'García', 'ricardo.garcia@gmail.com'),
 
 -- trabajadores
-(100123456, 'Yeswah', 'Gonzales', 'yeswahg@panaderiaelbuengusto.com.co'),
-(100234567, 'Juan Manuel', 'Espitia', 'jmespitia@panaderiaelbuengusto.com.co'),
-(100345678, 'Carlos Andrés', 'Rodríguez', 'crodriguez@panaderiaelbuengusto.com.co'),
-(100456789, 'Ana María', 'López', 'amlopez@panaderiaelbuengusto.com.co'),
-(100567890, 'Luis Fernando', 'Sánchez', 'lsanchez@panaderiaelbuengusto.com.co'),
-(100678901, 'María José', 'Ramírez', 'mramirez@panaderiaelbuengusto.com.co'),
-(100789012, 'Pedro Antonio', 'Gómez', 'pgomez@panaderiaelbuengusto.com.co'),
-(100890123, 'Laura Camila', 'Martínez', 'lmartinez@panaderiaelbuengusto.com.co'),
-(100901234, 'Diego Alejandro', 'Hernández', 'dhernandez@panaderiaelbuengusto.com.co'),
-(101012345, 'Sofía Valentina', 'Díaz', 'sdiaz@panaderiaelbuengusto.com.co'),
+	(100123456, 'Yeswah', 'Gonzales', 'yeswahg@panaderiaelbuengusto.com.co'),
+	(100234567, 'Juan Manuel', 'Espitia', 'jmespitia@panaderiaelbuengusto.com.co'),
+	(100345678, 'Carlos Andrés', 'Rodríguez', 'crodriguez@panaderiaelbuengusto.com.co'),
+	(100456789, 'Ana María', 'López', 'amlopez@panaderiaelbuengusto.com.co'),
+	(100567890, 'Luis Fernando', 'Sánchez', 'lsanchez@panaderiaelbuengusto.com.co'),
+	(100678901, 'María José', 'Ramírez', 'mramirez@panaderiaelbuengusto.com.co'),
+	(100789012, 'Pedro Antonio', 'Gómez', 'pgomez@panaderiaelbuengusto.com.co'),
+	(100890123, 'Laura Camila', 'Martínez', 'lmartinez@panaderiaelbuengusto.com.co'),
+	(100901234, 'Diego Alejandro', 'Hernández', 'dhernandez@panaderiaelbuengusto.com.co'),
+	(101012345, 'Sofía Valentina', 'Díaz', 'sdiaz@panaderiaelbuengusto.com.co'),
 
--- Clientes
-(101123456, 'Jorge Eduardo', 'Castro', 'jorgecastro82@gmail.com'),
-(101234567, 'Carolina Andrea', 'Rojas', 'carorojas23@hotmail.com'),
-(101345678, 'Andrés Felipe', 'Torres', 'andrestorres45@yahoo.com'),
-(101456789, 'Camila Estefanía', 'Mendoza', 'camendoza1987@gmail.com'),
-(101567890, 'Ricardo José', 'Vargas', 'rvargas.consultor@outlook.com'),
-(101678901, 'Patricia Alejandra', 'Nuñez', 'patynunez.15@gmail.com'),
-(101789012, 'Oscar David', 'Jiménez', 'ojimenez.col@protonmail.com'),
-(101890123, 'Daniela Sofía', 'Guzmán', 'daniguzman.oficial@hotmail.com'),
-(101901234, 'Javier Ignacio', 'Ríos', 'javierrios.co@gmail.com'),
-(102012345, 'Mónica Lucía', 'Herrera', 'herrera.monica@unisabana.edu.co'),
-(102123456, 'Carlos Alberto', 'Sánchez', 'carlossanchez12@gmail.com'),
-(102234567, 'María Fernanda', 'Pérez', 'mariaperez_91@hotmail.com'),
-(102345678, 'Luis Javier', 'Gutiérrez', 'luisgutierrrez.85@gmail.com'),
-(102456789, 'Sofía Carolina', 'Vega', 'sofia.vega95@yahoo.com'),
-(102567890, 'Fernando José', 'Martínez', 'fermartinez88@gmail.com'),
-(102678901, 'Natalia Juliana', 'Ramírez', 'nataliaramirez@outlook.com'),
-(102789012, 'Pedro Andrés', 'Gómez', 'pedroandresgomez@hotmail.com'),
-(102890123, 'Sandra Isabel', 'López', 'sandra.lopez22@gmail.com'),
-(102901234, 'José Luis', 'Mora', 'joseluismora23@live.com'),
-(103012345, 'Paola Andrea', 'Jiménez', 'paolaandrea_jimenez@gmail.com'),
-(103123456, 'Luis Enrique', 'Méndez', 'luisenrique.mendez@yahoo.com'),
-(103234567, 'Carmen Elisa', 'Paredes', 'carmenelisa92@outlook.com'),
-(103345678, 'Marcela Patricia', 'Castaño', 'marcelapatricia.casta@gmail.com'),
-(103456789, 'David Esteban', 'Salazar', 'david.salazar87@hotmail.com'),
-(103567890, 'Ana Sofía', 'Arévalo', 'anasofia.arevalo@gmail.com'),
-(103678901, 'Ricardo Ernesto', 'Jiménez', 'ricardojimenez123@hotmail.com'),
-(103789012, 'Victoria Eugenia', 'Luna', 'victoria_luna@live.com'),
-(103890123, 'Héctor Julio', 'Castro', 'hectorjulio.castro@gmail.com'),
-(103901234, 'Iván Sebastián', 'Vega', 'ivansvega98@outlook.com'),
-(104012345, 'Mariana Alejandra', 'Torres', 'marianaalejandra_torres@gmail.com'),
-(104123456, 'Carlos Daniel', 'Rodríguez', 'carlosdaniel.rodriguez@hotmail.com'),
-(104234567, 'Margarita Beatriz', 'Salazar', 'margaritabeatriz.salazar@gmail.com'),
-(104345678, 'Jorge Luis', 'Ramírez', 'jorgeramirez88@yahoo.com'),
-(104456789, 'Lucía Margarita', 'Vázquez', 'luciamargarita.vazquez@gmail.com'),
-(104567890, 'Óscar Javier', 'Reyes', 'oscarjavier.reyes@hotmail.com'),
-(104678901, 'Carolina Marcela', 'Suárez', 'carolinamarcela.suarez@gmail.com'),
-(104789012, 'Felipe Antonio', 'Mendoza', 'felipeantonio.mendoza@live.com'),
-(104890123, 'Claudia Patricia', 'Cordero', 'claudiapatricia.cordero@gmail.com'),
-(104901234, 'Martín Javier', 'García', 'martin.javier.garcia@outlook.com'),
-(105012345, 'Elena Sofía', 'Hernández', 'elenasofia.hernandez@gmail.com'),
-(105123456, 'Ricardo Alejandro', 'Pinto', 'ricardoal.pinto@yahoo.com'),
-(105234567, 'Beatriz Alicia', 'Reyes', 'beatrizalicia.reyes@outlook.com'),
-(105345678, 'Fernando Manuel', 'Lozano', 'fernandomanuel.lozano@gmail.com'),
-(105456789, 'Sandra Margarita', 'García', 'sandramargarita.garcia@live.com'),
-(105567890, 'Andrés Gabriel', 'Ríos', 'andresgabriel.rios@gmail.com'),
-(105678901, 'Violeta María', 'Fernández', 'violetamaria.fernandez@outlook.com'),
-(105789012, 'Ricardo Antonio', 'Vera', 'ricardoantonio.vera@hotmail.com'),
-(105890123, 'Gabriela Luisa', 'Castillo', 'gabrielaluisa.castillo@gmail.com'),
-(105901234, 'Eduardo Javier', 'Jiménez', 'eduardojavier.jimenez@hotmail.com');
+	-- Clientes
+	(101123456, 'Jorge Eduardo', 'Castro', 'jorgecastro82@gmail.com'),
+	(101234567, 'Carolina Andrea', 'Rojas', 'carorojas23@hotmail.com'),
+	(101345678, 'Andrés Felipe', 'Torres', 'andrestorres45@yahoo.com'),
+	(101456789, 'Camila Estefanía', 'Mendoza', 'camendoza1987@gmail.com'),
+	(101567890, 'Ricardo José', 'Vargas', 'rvargas.consultor@outlook.com'),
+	(101678901, 'Patricia Alejandra', 'Nuñez', 'patynunez.15@gmail.com'),
+	(101789012, 'Oscar David', 'Jiménez', 'ojimenez.col@protonmail.com'),
+	(101890123, 'Daniela Sofía', 'Guzmán', 'daniguzman.oficial@hotmail.com'),
+	(101901234, 'Javier Ignacio', 'Ríos', 'javierrios.co@gmail.com'),
+	(102012345, 'Mónica Lucía', 'Herrera', 'herrera.monica@unisabana.edu.co'),
+	(102123456, 'Carlos Alberto', 'Sánchez', 'carlossanchez12@gmail.com'),
+	(102234567, 'María Fernanda', 'Pérez', 'mariaperez_91@hotmail.com'),
+	(102345678, 'Luis Javier', 'Gutiérrez', 'luisgutierrrez.85@gmail.com'),
+	(102456789, 'Sofía Carolina', 'Vega', 'sofia.vega95@yahoo.com'),
+	(102567890, 'Fernando José', 'Martínez', 'fermartinez88@gmail.com'),
+	(102678901, 'Natalia Juliana', 'Ramírez', 'nataliaramirez@outlook.com'),
+	(102789012, 'Pedro Andrés', 'Gómez', 'pedroandresgomez@hotmail.com'),
+	(102890123, 'Sandra Isabel', 'López', 'sandra.lopez22@gmail.com'),
+	(102901234, 'José Luis', 'Mora', 'joseluismora23@live.com'),
+	(103012345, 'Paola Andrea', 'Jiménez', 'paolaandrea_jimenez@gmail.com'),
+	(103123456, 'Luis Enrique', 'Méndez', 'luisenrique.mendez@yahoo.com'),
+	(103234567, 'Carmen Elisa', 'Paredes', 'carmenelisa92@outlook.com'),
+	(103345678, 'Marcela Patricia', 'Castaño', 'marcelapatricia.casta@gmail.com'),
+	(103456789, 'David Esteban', 'Salazar', 'david.salazar87@hotmail.com'),
+	(103567890, 'Ana Sofía', 'Arévalo', 'anasofia.arevalo@gmail.com'),
+	(103678901, 'Ricardo Ernesto', 'Jiménez', 'ricardojimenez123@hotmail.com'),
+	(103789012, 'Victoria Eugenia', 'Luna', 'victoria_luna@live.com'),
+	(103890123, 'Héctor Julio', 'Castro', 'hectorjulio.castro@gmail.com'),
+	(103901234, 'Iván Sebastián', 'Vega', 'ivansvega98@outlook.com'),
+	(104012345, 'Mariana Alejandra', 'Torres', 'marianaalejandra_torres@gmail.com'),
+	(104123456, 'Carlos Daniel', 'Rodríguez', 'carlosdaniel.rodriguez@hotmail.com'),
+	(104234567, 'Margarita Beatriz', 'Salazar', 'margaritabeatriz.salazar@gmail.com'),
+	(104345678, 'Jorge Luis', 'Ramírez', 'jorgeramirez88@yahoo.com'),
+	(104456789, 'Lucía Margarita', 'Vázquez', 'luciamargarita.vazquez@gmail.com'),
+	(104567890, 'Óscar Javier', 'Reyes', 'oscarjavier.reyes@hotmail.com'),
+	(104678901, 'Carolina Marcela', 'Suárez', 'carolinamarcela.suarez@gmail.com'),
+	(104789012, 'Felipe Antonio', 'Mendoza', 'felipeantonio.mendoza@live.com'),
+	(104890123, 'Claudia Patricia', 'Cordero', 'claudiapatricia.cordero@gmail.com'),
+	(104901234, 'Martín Javier', 'García', 'martin.javier.garcia@outlook.com'),
+	(105012345, 'Elena Sofía', 'Hernández', 'elenasofia.hernandez@gmail.com'),
+	(105123456, 'Ricardo Alejandro', 'Pinto', 'ricardoal.pinto@yahoo.com'),
+	(105234567, 'Beatriz Alicia', 'Reyes', 'beatrizalicia.reyes@outlook.com'),
+	(105345678, 'Fernando Manuel', 'Lozano', 'fernandomanuel.lozano@gmail.com'),
+	(105456789, 'Sandra Margarita', 'García', 'sandramargarita.garcia@live.com'),
+	(105567890, 'Andrés Gabriel', 'Ríos', 'andresgabriel.rios@gmail.com'),
+	(105678901, 'Violeta María', 'Fernández', 'violetamaria.fernandez@outlook.com'),
+	(105789012, 'Ricardo Antonio', 'Vera', 'ricardoantonio.vera@hotmail.com'),
+	(105890123, 'Gabriela Luisa', 'Castillo', 'gabrielaluisa.castillo@gmail.com'),
+	(105901234, 'Eduardo Javier', 'Jiménez', 'eduardojavier.jimenez@hotmail.com');
+
+-- 3. Inserción de gerentes (estos registros se usarán como referencia en proveedores)
+INSERT INTO ElBuenGusto.GERENTE (ger_documento, ger_fecha_ingreso, ger_fecha_salida, ger_dias_trabajados)
+VALUES
+  (108567890, '1990-03-12', '1995-03-12', DATEDIFF('1995-03-12', '1990-03-12')),
+  (108678901, '1995-03-13', '2000-03-13', DATEDIFF('2000-03-13', '1995-03-13')),
+  (108789012, '2000-03-14', '2005-03-14', DATEDIFF('2005-03-14', '2000-03-14')),
+  (108890123, '2005-03-15', '2010-03-15', DATEDIFF('2010-03-15', '2005-03-15')),
+  (108901234, '2010-03-16', '2015-03-16', DATEDIFF('2015-03-16', '2010-03-16')),
+  (109012345, '2015-03-17', '2020-03-17', DATEDIFF('2020-03-17', '2015-03-17')),
+  (109123456, '2020-03-18', '2022-03-18', DATEDIFF('2022-03-18', '2020-03-18')),
+  (109234567, '2022-03-19', '2024-11-25', DATEDIFF('2024-11-25', '2022-03-19')),
+  (109345678, '2025-11-26', NULL, DATEDIFF(CURDATE(), '2025-11-26'));
+
+-- 4. Inserción de proveedores
+-- (Los registros de PROVEEDOR requieren que el gerente (ger_documento) exista previamente)
+-- Primera parte: inserciones individuales con valores correctos
+INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
+VALUES
+  (890123456, 108567890, 106012345), -- Antonio Salazar -> Harinas del Valle S.A.S.
+  (900234567, 109012345, 106123456), -- Laura Rodríguez -> Lácteos Frescos Ltda.
+  (891234568, 108789012, 106234567), -- José González -> Dulces y Más S.A.
+  (902345679, 108901234, 106345678), -- Carlos Martínez -> Café Premium de Colombia
+  (893456780, 109123456, 106456789), -- Marcos Gutiérrez -> Empaques Seguros S.A.S.
+  (904567891, 109234567, 106567890), -- Raquel Cordero -> Chocolates Artesanales Ltda.
+  (895678902, 108890123, 106678901), -- Verónica Díaz -> Distribuidora Azucarera Nacional
+  (906789013, 108901234, 106789012), -- Carlos Martínez -> Frutos Secos del Caribe S.A.
+  (897890124, 109345678, 106890123); -- José Luis Fernández -> Equipos Panaderos S.A.S.
+
+-- Segunda parte: inserciones múltiples con corrección en ger_documento.
+-- Se asignan los gerentes de forma cíclica a los proveedores cuyos ger_documento estaban erróneos.
+INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
+VALUES
+  (908901235, 109234567, 106901234), -- Raquel Cordero -> Sabores Naturales Ltda.
+  (909012346, 108567890, 107012345), -- María José Vega -> Coca-Cola Femsa Colombia S.A.
+  (910123457, 108678901, 107123456), -- Carlos Eduardo Gutiérrez -> Snacks Andinos Ltda.
+  (911234568, 108789012, 107234567), -- Sofía Ramírez -> Pepsico Alimentos Colombia S.A.S.
+  (912345679, 108890123, 107345678), -- Luis Alfonso Reyes -> Distribuidora de Bebidas La Brisa
+  (913456780, 108901234, 107456789), -- Andrés Felipe Torres -> Super Ricas Snacks S.A.S.
+  (890123456, 109012345, 107567890), -- Natalia Martínez -> Harinas del Valle S.A.S.
+  (900234567, 109123456, 107678901), -- Alejandra González -> Lácteos Frescos Ltda.
+  (891234568, 109234567, 107789012), -- Pedro Sánchez -> Dulces y Más S.A.
+  (902345679, 109345678, 107890123), -- Juan Pablo Rodríguez -> Café Premium de Colombia
+  (893456780, 108567890, 107901234), -- Mónica Hernández -> Empaques Seguros S.A.S.
+  (904567891, 108678901, 108012345), -- Eduardo Ramírez -> Chocolates Artesanales Ltda.
+  (895678902, 108789012, 108123456), -- Victoria Cordero -> Distribuidora de Bebidas La Brisa
+  (906789013, 108890123, 108234567), -- Gabriela López -> Frutos Secos del Caribe S.A.
+  (897890124, 108901234, 108345678), -- Juliana Méndez -> Equipos Panaderos S.A.S.
+  (908901235, 109012345, 108456789); -- Ricardo García -> Sabores Naturales Ltda.
 
 INSERT INTO `ElBuenGusto`.`CATEGORIA` (`cat_id_categoria`, `cat_nombre`) VALUES
 (1, 'Desayuno'),
@@ -241,81 +290,6 @@ INSERT INTO ElBuenGusto.TELEFONO (tel_telefono, tel_tipo, per_documento) VALUES
 ('300105890123', 'Móvil', 105890123),
 ('300105901234', 'Móvil', 105901234);
 
-
--- Inserciones de periodos de gerentes entre 1990 y 2025
-INSERT INTO ElBuenGusto.GERENTE (ger_documento,ger_fecha_ingreso,ger_fecha_salida, ger_dias_trabajados)
-VALUES
-(108567890, '1990-03-12', '1995-03-12', DATEDIFF('1995-03-12', '1990-03-12')),
-(108678901, '1995-03-13', '2000-03-13', DATEDIFF('2000-03-13', '1995-03-13')),
-(108789012, '2000-03-14', '2005-03-14', DATEDIFF('2005-03-14', '2000-03-14')),
-(108890123, '2005-03-15', '2010-03-15', DATEDIFF('2010-03-15', '2005-03-15')),
-(108901234, '2010-03-16', '2015-03-16', DATEDIFF('2015-03-16', '2010-03-16')),
-(109012345, '2015-03-17', '2020-03-17', DATEDIFF('2020-03-17', '2015-03-17')),
-(109123456, '2020-03-18', '2022-03-18', DATEDIFF('2022-03-18', '2020-03-18')),
-(109234567, '2022-03-19', '2024-11-25', DATEDIFF('2024-11-25', '2022-03-19')),
-(109345678, '2025-11-26', NULL, DATEDIFF(CURDATE(), '2025-11-26'));
-
-
-
-
--- Insertar personas como proveedores asociados a una empresa
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(890123456, 108567890, 106012345); -- Antonio Salazar -> Harinas del Valle S.A.S.
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(900234567, 109012345, 106123456); -- Laura Rodríguez -> Lácteos Frescos Ltda.
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(891234568, 108789012, 106234567); -- José González -> Dulces y Más S.A.
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(902345679, 108901234, 106345678); -- Carlos Martínez -> Café Premium de Colombia
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(893456780, 109123456, 106456789); -- Marcos Gutiérrez -> Empaques Seguros S.A.S.
-
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(904567891, 109234567, 106567890); -- Raquel Cordero -> Chocolates Artesanales Ltda.
-
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(895678902, 108890123, 106678901); -- Verónica Díaz -> Distribuidora Azucarera Nacional
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(906789013, 108901234, 106789012); -- Carlos Martínez -> Frutos Secos del Caribe S.A.
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(897890124, 109345678, 106890123); -- José Luis Fernández -> Equipos Panaderos S.A.S.
-
-INSERT INTO ElBuenGusto.PROVEEDOR (emp_nit, ger_documento, per_documento)
-VALUES
-(908901235, 109234567, 106901234), -- Raquel Cordero -> Sabores Naturales Ltda.
-(909012346, 107012345, 107012345), -- María José Vega -> Coca-Cola Femsa Colombia S.A.
-(910123457, 107123456, 107123456), -- Carlos Eduardo Gutiérrez -> Snacks Andinos Ltda.
-(911234568, 107234567, 107234567), -- Sofía Ramírez -> Pepsico Alimentos Colombia S.A.S.
-(912345679, 107345678, 107345678), -- Luis Alfonso Reyes -> Distribuidora de Bebidas La Brisa
-(913456780, 107456789, 107456789), -- Andrés Felipe Torres -> Super Ricas Snacks S.A.S.
-(890123456, 107567890, 107567890), -- Natalia Martínez -> Harinas del Valle S.A.S.
-(900234567, 107678901, 107678901), -- Alejandra González -> Lácteos Frescos Ltda.
-(891234568, 107789012, 107789012), -- Pedro Sánchez -> Dulces y Más S.A.
-(902345679, 107890123, 107890123), -- Juan Pablo Rodríguez -> Café Premium de Colombia
-(893456780, 107901234, 107901234), -- Mónica Hernández -> Empaques Seguros S.A.S.
-(904567891, 108012345, 108012345), -- Eduardo Ramírez -> Chocolates Artesanales Ltda.
-(895678902, 108123456, 108123456), -- Victoria Cordero -> Distribuidora Azucarera Nacional
-(906789013, 108234567, 108234567), -- Gabriela López -> Frutos Secos del Caribe S.A.
-(897890124, 108345678, 108345678), -- Juliana Méndez -> Equipos Panaderos S.A.S.
-(908901235, 108456789, 108456789); -- Ricardo García -> Sabores Naturales Ltda.
-
 -- Insertar materias primas para una panadería y pastelería
 INSERT INTO ElBuenGusto.MATERIA (mat_codigo, mat_nombre, mat_precio_unitario, mat_cantidad_unidades, mat_fecha_llegada, mat_fecha_expiracion, per_documento)
 VALUES
@@ -345,31 +319,32 @@ VALUES
 (24, 'Coco Rallado', 9000, 700, '2025-01-10', '2025-04-01', 108345678), -- Juliana Méndez -> Equipos Panaderos S.A.S.
 (25, 'Glaseado de Azúcar', 7000, 400, '2025-02-10', '2025-06-15', 108456789); -- Ricardo García -> Sabores Naturales Ltda.
 
--- Insertar materia prima
-INSERT INTO ElBuenGusto.MATERIA (mat_codigo, mat_nombre, mat_precio_unitario, mat_cantidad_unidades, mat_fecha_llegada, mat_fecha_expiracion, per_documento)
-VALUES
-(26, 'Harina de trigo Coca-Cola', 1200, 100, '2025-01-01', '2025-12-01', 107012345),  -- Harina de trigo suministrada por Coca-Cola
-(27, 'Leche líquida Pepsico', 1500, 150, '2025-01-15', '2025-08-15', 107123456),  -- Leche líquida suministrada por Pepsico
-(28, 'Azúcar moreno Hershey\'s', 1800, 200, '2025-01-20', '2026-01-20', 107234567),  -- Azúcar moreno de Hershey's
-(29, 'Mantequilla de maní Skippy', 2200, 80, '2025-02-01', '2025-08-01', 107345678),  -- Mantequilla de maní Skippy
-(30, 'Cocoa en polvo Nestlé', 1700, 120, '2025-02-10', '2025-09-10', 107456789),  -- Cocoa en polvo de Nestlé
-(31, 'Mermelada Smucker\'s', 1300, 90, '2025-02-12', '2025-12-12', 107567890),  -- Mermelada de Smucker's
-(32, 'Café molido Starbucks', 2500, 50, '2025-02-15', '2026-02-15', 107678901),  -- Café molido Starbucks
-(33, 'Leche condensada La Lechera', 2000, 75, '2025-02-20', '2026-02-20', 107789012),  -- Leche condensada de La Lechera
-(34, 'Crema de leche Alquería', 1400, 100, '2025-03-01', '2026-03-01', 107890123),  -- Crema de leche Alquería
-(35, 'Chispas de chocolate M&M\'s', 2200, 130, '2025-03-05', '2026-03-05', 107901234),  -- Chispas de chocolate M&M's
-(36, 'Galletas Oreo', 1600, 200, '2025-03-10', '2026-03-10', 108012345),  -- Galletas Oreo
-(37, 'Vainilla extracto McCormick', 2500, 60, '2025-03-15', '2026-03-15', 108123456),  -- Extracto de vainilla McCormick
-(38, 'Sirope de maíz Karo', 1300, 140, '2025-03-20', '2026-03-20', 108234567),  -- Sirope de maíz Karo
-(39, 'Frutos secos Planters', 2000, 90, '2025-03-25', '2026-03-25', 108345678),  -- Frutos secos Planters
-(40, 'Cereal Kellogg\'s Corn Flakes', 1700, 200, '2025-04-01', '2026-04-01', 108456789),  -- Cereal Corn Flakes de Kellogg's
-(41, 'Puré de manzana Mott\'s', 1400, 110, '2025-04-05', '2026-04-05', 108567890),  -- Puré de manzana Mott's
-(42, 'Frambuesas congeladas Dole', 2200, 75, '2025-04-10', '2026-04-10', 108678901),  -- Frambuesas congeladas Dole
-(43, 'Graham crackers Nabisco', 1600, 150, '2025-04-15', '2026-04-15', 108789012),  -- Galletas Graham Nabisco
-(44, 'Vainilla en polvo Nielsen-Massey', 1800, 80, '2025-04-20', '2026-04-20', 108890123),  -- Vainilla en polvo Nielsen-Massey
-(45, 'Aceite vegetal Crisco', 1900, 60, '2025-04-25', '2026-04-25', 108901234),  -- Aceite Crisco
-(46, 'Caramelo líquido Hershey\'s', 2100, 90, '2025-05-01', '2026-05-01', 109012345),  -- Caramelo líquido Hershey's
-(47, 'Frutas secas Sun-Maid', 1700, 110, '2025-05-05', '2026-05-05', 109123456);  -- Frutas secas Sun-Maid
+INSERT INTO ElBuenGusto.MATERIA 
+  (mat_codigo, mat_nombre, mat_precio_unitario, mat_cantidad_unidades, mat_fecha_llegada, mat_fecha_expiracion, per_documento) 
+VALUES 
+  (26, 'Harina de trigo Coca-Cola',       1200, 100, '2025-01-01', '2025-12-01', 107012345),  -- proveedor #1
+  (27, 'Leche líquida Pepsico',            1500, 150, '2025-01-15', '2025-08-15', 107123456),  -- proveedor #2
+  (28, 'Azúcar moreno Hershey\'s',         1800, 200, '2025-01-20', '2026-01-20', 107234567),  -- proveedor #3
+  (29, 'Mantequilla de maní Skippy',       2200, 80,  '2025-02-01', '2025-08-01', 107345678),  -- proveedor #4
+  (30, 'Cocoa en polvo Nestlé',            1700, 120, '2025-02-10', '2025-09-10', 107456789),  -- proveedor #5
+  (31, 'Mermelada Smucker\'s',              1300, 90,  '2025-02-12', '2025-12-12', 107567890),  -- proveedor #6
+  (32, 'Café molido Starbucks',            2500, 50,  '2025-02-15', '2026-02-15', 107678901),  -- proveedor #7
+  (33, 'Leche condensada La Lechera',      2000, 75,  '2025-02-20', '2026-02-20', 107789012),  -- proveedor #8
+  (34, 'Crema de leche Alquería',          1400, 100, '2025-03-01', '2026-03-01', 107890123),  -- proveedor #9
+  (35, 'Chispas de chocolate M&M\'s',      2200, 130, '2025-03-05', '2026-03-05', 107901234),  -- proveedor #10
+  (36, 'Galletas Oreo',                    1600, 200, '2025-03-10', '2026-03-10', 108012345),  -- proveedor #11
+  (37, 'Vainilla extracto McCormick',      2500, 60,  '2025-03-15', '2026-03-15', 108123456),  -- proveedor #12
+  (38, 'Sirope de maíz Karo',              1300, 140, '2025-03-20', '2026-03-20', 108234567),  -- proveedor #13
+  (39, 'Frutos secos Planters',            2000, 90,  '2025-03-25', '2026-03-25', 108345678),  -- proveedor #14
+  (40, 'Cereal Kellogg\'s Corn Flakes',     1700, 200, '2025-04-01', '2026-04-01', 108456789),  -- proveedor #15
+  (41, 'Puré de manzana Mott\'s',           1400, 110, '2025-04-05', '2026-04-05', 107012345),  -- se reinicia ciclo: proveedor #1
+  (42, 'Frambuesas congeladas Dole',       2200, 75,  '2025-04-10', '2026-04-10', 107123456),  -- proveedor #2
+  (43, 'Graham crackers Nabisco',          1600, 150, '2025-04-15', '2026-04-15', 107234567),  -- proveedor #3
+  (44, 'Vainilla en polvo Nielsen-Massey', 1800, 80,  '2025-04-20', '2026-04-20', 107345678),  -- proveedor #4
+  (45, 'Aceite vegetal Crisco',            1900, 60,  '2025-04-25', '2026-04-25', 107456789),  -- proveedor #5
+  (46, 'Caramelo líquido Hershey\'s',      2100, 90,  '2025-05-01', '2026-05-01', 107567890),  -- proveedor #6
+  (47, 'Frutas secas Sun-Maid',            1700, 110, '2025-05-05', '2026-05-05', 107678901);  -- proveedor #7
+
 
 
 -- Insertar categorías de materias primas
@@ -426,195 +401,6 @@ VALUES
 (45, 'Aceite'),       -- Aceite vegetal Crisco
 (46, 'Dulce'),        -- Caramelo líquido Hershey's
 (47, 'Fruta');        -- Frutas secas Sun-Maid
-
-
-
--- Insertar recetas de productos con las materias primas correspondientes
-
--- Pan de Trigo
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(1, 1),  -- Harina de Trigo
-(1, 2),  -- Leche Entera
-(1, 4),  -- Levadura Fresca
-(1, 6),  -- Mantequilla
-(1, 18); -- Huevo
-
--- Tarta de Manzana
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(2, 1),  -- Harina de Trigo
-(2, 2),  -- Leche Entera
-(2, 6),  -- Mantequilla
-(2, 18), -- Huevo
-(2, 17), -- Frambuesas
-(2, 4);  -- Levadura Fresca
-
--- Bizcocho de Chocolate
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(3, 1),  -- Harina de Trigo
-(3, 5),  -- Chocolate Amargo
-(3, 6),  -- Mantequilla
-(3, 18), -- Huevo
-(3, 3),  -- Azúcar Blanca
-(3, 4);  -- Levadura Fresca
-
--- Galletas de Avena
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(4, 1),  -- Harina de Trigo
-(4, 3),  -- Azúcar Blanca
-(4, 6),  -- Mantequilla
-(4, 19), -- Cereal de Maíz
-(4, 18), -- Huevo
-(4, 10); -- Esencia de Vainilla
-
--- Croissants
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(5, 1),  -- Harina de Trigo
-(5, 6),  -- Mantequilla
-(5, 4),  -- Levadura Fresca
-(5, 18), -- Huevo
-(5, 2);  -- Leche Entera
-
--- Pan de Centeno
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(6, 7),  -- Harina de Centeno
-(6, 2),  -- Leche Entera
-(6, 4),  -- Levadura Fresca
-(6, 6),  -- Mantequilla
-(6, 18); -- Huevo
-
--- Pan de Avena
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(7, 8),  -- Harina de Avena
-(7, 2),  -- Leche Entera
-(7, 4),  -- Levadura Fresca
-(7, 6),  -- Mantequilla
-(7, 18); -- Huevo
-
--- Pan de Molde
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(8, 1),  -- Harina de Trigo
-(8, 2),  -- Leche Entera
-(8, 4),  -- Levadura Fresca
-(8, 6),  -- Mantequilla
-(8, 18); -- Huevo
-
--- Pan Integral
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(9, 9),  -- Harina Integral
-(9, 2),  -- Leche Entera
-(9, 4),  -- Levadura Fresca
-(9, 6),  -- Mantequilla
-(9, 18); -- Huevo
-
--- Pan Francés
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(10, 1),  -- Harina de Trigo
-(10, 2),  -- Leche Entera
-(10, 4),  -- Levadura Fresca
-(10, 6);  -- Mantequilla
-
--- Pan de Chocolate
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(11, 1),  -- Harina de Trigo
-(11, 5),  -- Chocolate Amargo
-(11, 2),  -- Leche Entera
-(11, 4),  -- Levadura Fresca
-(11, 6),  -- Mantequilla
-(11, 18); -- Huevo
-
--- Pan de Aceitunas
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(12, 1),  -- Harina de Trigo
-(12, 2),  -- Leche Entera
-(12, 4),  -- Levadura Fresca
-(12, 6),  -- Mantequilla
-(12, 13); -- Aceitunas
-
--- Pan de Pascua
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(13, 1),  -- Harina de Trigo
-(13, 2),  -- Leche Entera
-(13, 4),  -- Levadura Fresca
-(13, 6),  -- Mantequilla
-(13, 18), -- Huevo
-(13, 16); -- Pasas
-
--- Pan de Maíz
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(14, 14), -- Harina de Maíz
-(14, 2),  -- Leche Entera
-(14, 4),  -- Levadura Fresca
-(14, 6),  -- Mantequilla
-(14, 18); -- Huevo
-
--- Pan de Leche
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(15, 1),  -- Harina de Trigo
-(15, 2),  -- Leche Entera
-(15, 4),  -- Levadura Fresca
-(15, 6),  -- Mantequilla
-(15, 18); -- Huevo
-
--- Pan Brioche
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(16, 1),  -- Harina de Trigo
-(16, 2),  -- Leche Entera
-(16, 4),  -- Levadura Fresca
-(16, 6),  -- Mantequilla
-(16, 18), -- Huevo
-(16, 3);  -- Azúcar Blanca
-
--- Pan de Hot Dog
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(17, 1),  -- Harina de Trigo
-(17, 2),  -- Leche Entera
-(17, 4),  -- Levadura Fresca
-(17, 6),  -- Mantequilla
-(17, 18); -- Huevo
-
--- Pan de Hamburguesa
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(18, 1),  -- Harina de Trigo
-(18, 2),  -- Leche Entera
-(18, 4),  -- Levadura Fresca
-(18, 6),  -- Mantequilla
-(18, 18); -- Huevo
-
--- Pan de Chocolate y Avellanas
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(19, 1),  -- Harina de Trigo
-(19, 5),  -- Chocolate Amargo
-(19, 6),  -- Mantequilla
-(19, 18), -- Huevo
-(19, 15); -- Avellanas
-
--- Panecillos de Canela
-INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
-VALUES
-(20, 1),  -- Harina de Trigo
-(20, 3),  -- Azúcar Blanca
-(20, 6),  -- Mantequilla
-(20, 18), -- Huevo
-(20, 20); -- Canela
 
 -- Insertar los cargos y salarios
 INSERT INTO ElBuenGusto.CARGO (car_tipo, car_salario)
@@ -893,7 +679,7 @@ VALUES (3, 10);  -- prm_id 3 -> 'Compra 3 y obtén $100 de descuento', pro_codig
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (18000, '10:30:00', '2025-02-14 10:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Centro', 101123456, 1);
+  (18000, '10:30:00', '2025-02-14 10:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Centro', 101123456, 100234567);
 
 -- Detalles Venta 1: 2 unidades de Pan de Trigo (pro_codigo = 1) y 1 unidad de Tarta de Manzana (pro_codigo = 2)
 INSERT INTO DETALLE_VENTA 
@@ -906,7 +692,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (44000, '12:00:00', '2025-02-14 12:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 123 #45-67', 101234567, 2);
+  (44000, '12:00:00', '2025-02-14 12:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 123 #45-67', 101234567, 100234567);
 
 -- Detalles Venta 2: 1 Bizcocho de Chocolate (pro_codigo = 3), 3 Galletas de Avena (pro_codigo = 4) y 2 Croissants (pro_codigo = 5)
 INSERT INTO DETALLE_VENTA 
@@ -920,7 +706,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (32400, '14:15:00', '2025-02-14 14:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Norte', 101345678, 3);
+  (32400, '14:15:00', '2025-02-14 14:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Norte', 101345678, 100234567);
 
 -- Detalles Venta 3: 2 Pan de Centeno (pro_codigo = 6), 2 Pan de Avena (pro_codigo = 7), 1 Pan de Molde (pro_codigo = 8),
 -- 1 Pan Integral (pro_codigo = 9) y 3 Pan Francés (pro_codigo = 10)
@@ -937,7 +723,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (16000, '15:00:00', '2025-02-14 15:00:00', 'efectivo', 'Venta en tienda', 'Sucursal Sur', 101456789, 4);
+  (16000, '15:00:00', '2025-02-14 15:00:00', 'efectivo', 'Venta en tienda', 'Sucursal Sur', 101456789, 100234567);
 
 -- Detalles Venta 4: 2 Pan de Trigo (interno, pro_codigo = 1) y 5 unidades de Harina de trigo Coca-Cola (externo, pre_codigo = 26)
 INSERT INTO DETALLE_VENTA 
@@ -950,7 +736,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (22000, '16:30:00', '2025-02-14 16:30:00', 'tarjeta', 'Venta a domicilio', 'Calle 456 #78-90', 101567890, 5);
+  (22000, '16:30:00', '2025-02-14 16:30:00', 'tarjeta', 'Venta a domicilio', 'Calle 456 #78-90', 101567890, 100234567);
 
 -- Detalles Venta 5: 2 Leche líquida Pepsico (externo, pre_codigo = 27), 3 Azúcar moreno Hershey's (externo, pre_codigo = 28)
 -- y 1 Cocoa en polvo Nestlé (externo, pre_codigo = 30)
@@ -965,7 +751,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (24000, '17:45:00', '2025-02-14 17:45:00', 'tarjeta', 'Venta a domicilio', 'Calle 789 #12-34', 101678901, 6);
+  (24000, '17:45:00', '2025-02-14 17:45:00', 'tarjeta', 'Venta a domicilio', 'Calle 789 #12-34', 101678901, 100234567);
 
 -- Detalles Venta 6: 1 Croissants (interno, pro_codigo = 5), 2 Mermelada Smucker's (externo, pre_codigo = 31)
 -- y 1 Tarta de Manzana (interno, pro_codigo = 2)
@@ -980,7 +766,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (23000, '18:30:00', '2025-02-14 18:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Este', 101789012, 7);
+  (23000, '18:30:00', '2025-02-14 18:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Este', 101789012, 100234567);
 
 -- Detalles Venta 7: 1 Bizcocho de Chocolate (interno, pro_codigo = 3) y 2 Leche condensada La Lechera (externo, pre_codigo = 33)
 INSERT INTO DETALLE_VENTA 
@@ -993,7 +779,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (15500, '19:15:00', '2025-02-14 19:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Oeste', 101890123, 8);
+  (15500, '19:15:00', '2025-02-14 19:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Oeste', 101890123, 100789012);
 
 -- Detalles Venta 8: 2 Croissants (interno, pro_codigo = 5) y 1 Chispas de chocolate M&M's (externo, pre_codigo = 35)
 INSERT INTO DETALLE_VENTA 
@@ -1006,7 +792,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (22000, '20:00:00', '2025-02-14 20:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 321 #98-76', 101901234, 9);
+  (22000, '20:00:00', '2025-02-14 20:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 321 #98-76', 101901234, 100789012);
 
 -- Detalles Venta 9: 1 Tarta de Manzana (interno, pro_codigo = 2), 2 Pan Francés (interno, pro_codigo = 10)
 -- y 1 Galletas Oreo (externo, pre_codigo = 36)
@@ -1021,7 +807,7 @@ VALUES
 INSERT INTO VENTA 
   (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
 VALUES 
-  (14500, '20:45:00', '2025-02-14 20:45:00', 'efectivo', 'Venta en tienda', 'Sucursal Central', 102012345, 10);
+  (14500, '20:45:00', '2025-02-14 20:45:00', 'efectivo', 'Venta en tienda', 'Sucursal Central', 102012345, 100789012);
 
 -- Detalles Venta 10: 2 Pan de Trigo (interno, pro_codigo = 1), 3 Vainilla extracto McCormick (externo, pre_codigo = 37)
 -- y 1 Sirope de maíz Karo (externo, pre_codigo = 38)
@@ -1121,6 +907,97 @@ INSERT INTO ElBuenGusto.DETALLE_DEVOLUCION (det_cantidad_producto, dev_id, pre_c
 VALUES 
   (6, 10, 36, NULL),
   (8, 10, NULL, 10);
+  
+-- Insertar recetas de productos con las materias primas correspondientes
 
+-- Pan de Trigo
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(1, 1),  -- Harina de Trigo
+(1, 2),  -- Leche Entera
+(1, 4),  -- Levadura Fresca
+(1, 6),  -- Mantequilla
+(1, 18); -- Huevo
 
-select * from DETALLE_PROMOCION;
+-- Tarta de Manzana
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(2, 1),  -- Harina de Trigo
+(2, 2),  -- Leche Entera
+(2, 6),  -- Mantequilla
+(2, 18), -- Huevo
+(2, 17), -- Frambuesas
+(2, 4);  -- Levadura Fresca
+
+-- Bizcocho de Chocolate
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(3, 1),  -- Harina de Trigo
+(3, 5),  -- Chocolate Amargo
+(3, 6),  -- Mantequilla
+(3, 18), -- Huevo
+(3, 3),  -- Azúcar Blanca
+(3, 4);  -- Levadura Fresca
+
+-- Galletas de Avena
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(4, 1),  -- Harina de Trigo
+(4, 3),  -- Azúcar Blanca
+(4, 6),  -- Mantequilla
+(4, 19), -- Cereal de Maíz
+(4, 18), -- Huevo
+(4, 10); -- Esencia de Vainilla
+
+-- Croissants
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(5, 1),  -- Harina de Trigo
+(5, 6),  -- Mantequilla
+(5, 4),  -- Levadura Fresca
+(5, 18), -- Huevo
+(5, 2);  -- Leche Entera
+
+-- Pan de Centeno
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(6, 7),  -- Harina de Centeno
+(6, 2),  -- Leche Entera
+(6, 4),  -- Levadura Fresca
+(6, 6),  -- Mantequilla
+(6, 18); -- Huevo
+
+-- Pan de Avena
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(7, 8),  -- Harina de Avena
+(7, 2),  -- Leche Entera
+(7, 4),  -- Levadura Fresca
+(7, 6),  -- Mantequilla
+(7, 18); -- Huevo
+
+-- Pan de Molde
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(8, 1),  -- Harina de Trigo
+(8, 2),  -- Leche Entera
+(8, 4),  -- Levadura Fresca
+(8, 6),  -- Mantequilla
+(8, 18); -- Huevo
+
+-- Pan Integral
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(9, 9),  -- Harina Integral
+(9, 2),  -- Leche Entera
+(9, 4),  -- Levadura Fresca
+(9, 6),  -- Mantequilla
+(9, 18); -- Huevo
+
+-- Pan Francés
+INSERT INTO ElBuenGusto.RECETA (pro_codigo, mat_codigo)
+VALUES
+(10, 1),  -- Harina de Trigo
+(10, 2),  -- Leche Entera
+(10, 4),  -- Levadura Fresca
+(10, 6);  -- Mantequilla

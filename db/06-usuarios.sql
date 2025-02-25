@@ -1,19 +1,12 @@
 USE ElBuenGusto ;
 -- CREACION DE USUARIOS --
-DROP USER IF EXISTS 'cajero'@'localhost';
-DROP USER IF EXISTS 'cliente'@'localhost';
-DROP USER IF EXISTS 'gerente'@'localhost';
-DROP USER IF EXISTS 'mesero'@'localhost';
-DROP USER IF EXISTS 'panadero'@'localhost';
-DROP USER IF EXISTS 'pastelero'@'localhost';
-
 -- Crear usuarios
-CREATE USER 'gerente'@'%' IDENTIFIED BY 'Gerente123';
-CREATE USER 'panadero'@'%' IDENTIFIED BY 'Panadero123';
-CREATE USER 'pastelero'@'%' IDENTIFIED BY 'Pastelero123';
-CREATE USER 'mesero'@'%' IDENTIFIED BY 'Mesero123';
-CREATE USER 'cajero'@'%' IDENTIFIED BY 'Cajero123';
-CREATE USER 'cliente'@'%' IDENTIFIED BY 'Cliente123';
+CREATE USER IF NOT EXISTS 'gerente'@'%' IDENTIFIED BY 'Gerente123';
+CREATE USER IF NOT EXISTS 'panadero'@'%' IDENTIFIED BY 'Panadero123';
+CREATE USER IF NOT EXISTS 'pastelero'@'%' IDENTIFIED BY 'Pastelero123';
+CREATE USER IF NOT EXISTS 'mesero'@'%' IDENTIFIED BY 'Mesero123';
+CREATE USER IF NOT EXISTS 'cajero'@'%' IDENTIFIED BY 'Cajero123';
+CREATE USER IF NOT EXISTS 'cliente'@'%' IDENTIFIED BY 'Cliente123';
 
 -- Revocar todos los privilegios existentes
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM 
@@ -67,5 +60,34 @@ GRANT SELECT ON ElBuenGusto.VISTA_COMPLETO_VENTAS TO 'cajero'@'%';
 GRANT SELECT ON ElBuenGusto.CLIENTE TO 'cliente'@'%';
 GRANT SELECT ON ElBuenGusto.VISTA_PROMOCIONES_ACTIVAS TO 'cliente'@'%';
 GRANT SELECT ON ElBuenGusto.VISTA_COMPLETO_VENTAS TO 'cliente'@'%';
+/*
+	Permisos sobre los procedimientos
+*/
+-- Permisos para Panadero
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.SolicitudesPendientesMateriaPrima TO 'panadero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ActualizarStock TO 'panadero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ConsultarRecetas TO 'panadero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ControlCaducidadMateriales TO 'panadero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.DisponibilidadProduccion TO 'panadero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.InventarioCritico TO 'panadero'@'%';
 
-FLUSH PRIVILEGES;
+-- Permisos para Pastelero
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.SolicitudesPendientesMateriaPrima TO 'pastelero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ActualizarStock TO 'pastelero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ConsultarRecetas TO 'pastelero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ControlCaducidadMateriales TO 'pastelero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.DisponibilidadProduccion TO 'pastelero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.InventarioCritico TO 'pastelero'@'%';
+
+-- Permisos para Mesero
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.PromocionesActivasVigentes TO 'mesero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ListadoCompletoProductos TO 'mesero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.VerificarDisponibilidadProducto TO 'mesero'@'%';
+
+-- Permisos para Cajero
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.RegistrarVenta TO 'cajero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.RegistrarDetalleVenta TO 'cajero'@'%';
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.CierreCajaDiario TO 'cajero'@'%';
+
+-- Permisos para Cliente
+GRANT EXECUTE ON PROCEDURE ElBuenGusto.ObtenerVentas TO 'cliente'@'%';

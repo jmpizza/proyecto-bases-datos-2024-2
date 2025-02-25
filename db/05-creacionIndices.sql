@@ -1,4 +1,6 @@
-use elbuengusto;
+use ElBuenGusto;
+SET NAMES 'utf8mb4';
+
 -- Filtrar busquedas por nombre de un producto
 create index idx_nombre on elbuengusto.PRODUCTO(pro_nombre);
 select * from producto where pro_nombre like "Croissants";

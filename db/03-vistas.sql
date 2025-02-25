@@ -1,4 +1,5 @@
 USE ElBuenGusto;
+SET NAMES 'utf8mb4';
 
 -- VISTAS ESTRATÉGICAS --
 -- 1. Vista de Inventario Crítico
