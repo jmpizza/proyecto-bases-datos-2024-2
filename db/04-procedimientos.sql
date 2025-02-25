@@ -233,7 +233,7 @@ END //
 CREATE PROCEDURE ObtenerVentas(IN documento INT)
 BEGIN
     SELECT 
-        ven_id_venta,
+        ven_fecha,
         ven_tipo_pago,
         productos_vendidos,
         ven_precio_total
