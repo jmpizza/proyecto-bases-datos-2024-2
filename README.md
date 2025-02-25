@@ -50,7 +50,7 @@ El objetivo de este proyecto es diseñar e implementar un sistema de base de dat
    ```
 5. Inicia el contendor de docker (Docker Desktop debe estar en ejecución)
    ```sh
-   npm tun docker:up
+   npm run docker:up
    ```
 6. Inicia el servidor:
    ```sh
