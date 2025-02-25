@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
+    "docker:down": "docker-compose down -v",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
