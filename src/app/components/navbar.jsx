@@ -29,7 +29,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/sesion"
+              href="/login"
               className="bg-sky-300 px-4 py-2 rounded-lg hover:bg-sky-400"
             >
               Iniciar Sesión

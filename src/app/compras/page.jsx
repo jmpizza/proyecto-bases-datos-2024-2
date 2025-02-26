@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function ConsultaCompras() {
   const [documento, setDocumento] = useState('');
   const [compras, setCompras] = useState([]);
-  
+
   const handleConsulta = async () => {
     if (!documento) return;
     const response = await fetch(`/api/compras?documento=${documento}`);
@@ -16,16 +16,16 @@ export default function ConsultaCompras() {
     <div className="flex flex-col items-center p-4">
       <div className="bg-gray-100 p-4 rounded shadow-md">
         <p className="text-center mb-2">Para consultar las compras que ha realizado, ingrese su número de documento</p>
-        <input 
-          type="text" 
-          placeholder="1000000000" 
-          value={documento} 
-          onChange={(e) => setDocumento(e.target.value)} 
+        <input
+          type="text"
+          placeholder="1000000000"
+          value={documento}
+          onChange={(e) => setDocumento(e.target.value)}
           className="border rounded px-3 py-2 w-full mb-2"
         />
         <div className="flex justify-between">
-          <button className="bg-gray-400 text-white px-4 py-2 rounded" onClick={() => setDocumento('')}>Cancelar</button>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleConsulta}>Consultar</button>
+          <button className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500" onClick={() => setDocumento('')}>Cancelar</button>
+          <button className="bg-sky-300 text-white px-4 py-2 rounded hover:bg-sky-400" onClick={handleConsulta}>Consultar</button>
         </div>
       </div>
       {compras.length > 0 && (
