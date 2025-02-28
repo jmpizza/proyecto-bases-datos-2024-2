@@ -1,5 +1,4 @@
 USE ElBuenGusto ;
-SET NAMES 'utf8mb4';
 
 -- Insercion de empresas externas --
 -- 1. Inserción de empresas externas
@@ -1001,3 +1000,27 @@ VALUES
 (10, 2),  -- Leche Entera
 (10, 4),  -- Levadura Fresca
 (10, 6);  -- Mantequilla
+
+-- Insersion de usuarios
+INSERT INTO `ElBuenGusto`.`USUARIO` (`per_documento`, `usr_clave`, `usr_rol`) VALUES
+-- Gerentes
+(108567890, 'gerenteClave', 'GERENTE'),
+(108678901, 'gerenteClave', 'GERENTE'),
+(108789012, 'gerenteClave', 'GERENTE'),
+(108890123, 'gerenteClave', 'GERENTE'),
+(108901234, 'gerenteClave', 'GERENTE'),
+(109012345, 'gerenteClave', 'GERENTE'),
+(109123456, 'gerenteClave', 'GERENTE'),
+(109234567, 'gerenteClave', 'GERENTE'),
+(109345678, 'gerenteClave', 'GERENTE'),
+
+-- Trabajadores
+(100123456, 'MeseroClave', 'CAJERO'),    
+(100234567, 'CajeroClave', 'CAJERO'),    
+(100345678, 'PasteleroClave', 'PASTELERO'), 
+(100456789, 'PanaderoClave', 'PANADERO'),
+(100678901, 'MeseroClave', 'CAJERO'),   
+(100789012, 'CajeroClave', 'CAJERO'),
+(100890123, 'PasteleroClave', 'PASTELERO'),
+(100901234, 'PanaderoClave', 'PANADERO');
+

@@ -1,5 +1,4 @@
 DROP SCHEMA IF EXISTS ElBuenGusto;
-SET NAMES 'utf8mb4';
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -464,3 +463,21 @@ CREATE TABLE IF NOT EXISTS `ElBuenGusto`.`DETALLE_DEVOLUCION` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `ElBuenGusto`.`USUARIO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ElBuenGusto`.`USUARIO` (
+  `per_documento` INT NOT NULL,
+  `usr_clave` VARCHAR(255) NOT NULL,
+  `usr_rol` ENUM('GERENTE', 'CAJERO', 'PANADERO', 'PASTELERO') NOT NULL,
+  PRIMARY KEY (`per_documento`),
+  INDEX `fk_USUARIO_PERSONA_idx` (`per_documento` ASC) VISIBLE,
+  CONSTRAINT `fk_USUARIO_PERSONA`
+    FOREIGN KEY (`per_documento`)
+    REFERENCES `ElBuenGusto`.`PERSONA` (`per_documento`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE) 
+ENGINE = InnoDB;
+
+
