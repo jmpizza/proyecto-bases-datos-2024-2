@@ -1,5 +1,4 @@
 import mysql from "mysql2/promise";
-import { cookies } from "next/headers";
 
 const rootPool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
@@ -17,21 +16,33 @@ const credentials = {
   cliente: { user: "cliente", password: "Cliente123" },
 };
 
-export async function getUserPool() {
-  const cookieStore = await cookies();
-  let role = cookieStore.get("role")?.value;
-  
-  if (!role || !credentials[role]) {
-    role = "cliente";
+export async function getUserPool(req) {
+  try {
+    const cookieHeader = req.headers.get("cookie") || "";
+    const response = await fetch("http://localhost:3000/api/auth/role", {
+      headers: { cookie: cookieHeader },
+    });
+    
+    const data = await response.json();
+    const role = data.role || "cliente";
+    
+    return mysql.createPool({
+      host: process.env.DB_HOST || "localhost",
+      port: process.env.DB_PORT || 3307,
+      user: credentials[role].user,
+      password: credentials[role].password,
+      database: process.env.DB_NAME || "elbuengusto",
+    });
+  } catch (error) {
+    console.error("Error obteniendo el rol:", error);
+    return mysql.createPool({
+      host: process.env.DB_HOST || "localhost",
+      port: process.env.DB_PORT || 3307,
+      user: "cliente",
+      password: "Cliente123",
+      database: process.env.DB_NAME || "elbuengusto",
+    });
   }
-
-  return mysql.createPool({
-    host: process.env.DB_HOST || "localhost",
-    port: process.env.DB_PORT || 3307,
-    user: credentials[role].user,
-    password: credentials[role].password,
-    database: process.env.DB_NAME || "elbuengusto",
-  });
 }
 
 export function getRootPool() {

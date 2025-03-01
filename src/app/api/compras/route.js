@@ -1,9 +1,10 @@
-import pool from '@/lib/db';
+import { getRootPool } from '@/lib/db';
 
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const documento = searchParams.get('documento');
+    const pool = getRootPool();
 
     if (!documento) {
       return Response.json({ error: 'Documento es requerido' }, { status: 400 });
