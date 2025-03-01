@@ -1,8 +1,9 @@
-import pool from '@/lib/db';
+import { getUserPool } from '@/lib/db';
 
 export async function GET() {
   try {
-    const [rows] = await pool.query("show tables");
+    const pool = await getUserPool(); 
+    const [rows] = await pool.query("SHOW TABLES");
     return Response.json({ tables: rows });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
