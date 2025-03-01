@@ -1,5 +1,6 @@
 "use client"; 
 import { usePathname } from "next/navigation";
+import "../globals.css";
 import Navbar from "./navbar";
 
 export default function Layoutwrapper({ children }) {

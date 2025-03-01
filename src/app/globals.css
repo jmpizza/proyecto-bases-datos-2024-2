@@ -2,4 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 30%;
+    max-width: 25%;
+    min-width: 25%;
+    background: #f5f5f5;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .sidebar-title {
+    margin-top: 0;
+  }
+  
+  .sidebar-info {
+    font-size: 0.9rem;
+  }
+  
+  .table-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background: #7dd3fc;
+    color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .table-button.selected {
+    background: #7dd3fc;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .table-container {
+    max-width: 100%;
+    max-height: 500px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #7dd3fc;
+    color: black;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+  }
+  
+  .no-data {
+    margin-top: 20px;
+  }

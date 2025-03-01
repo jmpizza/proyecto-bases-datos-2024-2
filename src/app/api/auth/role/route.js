@@ -22,7 +22,7 @@ export const GET = async () => {
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
-    console.error("❌ Error verificando token:", error);
+    console.error("Error verificando token:", error);
     return new NextResponse(
       JSON.stringify({ error: "Token inválido", role: "cliente" }),
       { status: 401, headers: { "Content-Type": "application/json" } }
