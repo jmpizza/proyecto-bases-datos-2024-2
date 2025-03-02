@@ -1,4 +1,5 @@
 USE ElBuenGusto ;
+SET NAMES 'utf8mb4';
 
 -- Insercion de empresas externas --
 -- 1. Inserción de empresas externas

@@ -1,4 +1,5 @@
 USE ElBuenGusto ;
+SET NAMES 'utf8mb4';
 -- CREACION DE USUARIOS --
 -- Crear usuarios
 CREATE USER IF NOT EXISTS 'gerente'@'%' IDENTIFIED BY 'Gerente123';
