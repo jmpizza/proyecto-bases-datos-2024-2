@@ -14,7 +14,7 @@ export async function POST(req) {
 
     const newToken = jwt.sign(
       {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, 
+        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 8, 
         username: decoded.username,
         role: "cliente",
       },
@@ -25,7 +25,7 @@ export async function POST(req) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 8,
       path: "/",
     });
 
