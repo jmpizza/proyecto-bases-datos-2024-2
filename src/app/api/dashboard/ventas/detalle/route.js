@@ -1,11 +1,11 @@
-import { getRootPool } from "@/lib/db";
+import { getUserPool } from "@/lib/db";
 
 export async function POST(req) {
   try {
     const data = await req.json();
 
     // Validación básica de la información de venta y detalle
-    if (!data.venta || typeof data.venta !== 'object') {
+    if (!data.venta || typeof data.venta !== "object") {
       return new Response(
         JSON.stringify({ error: "Datos de venta faltantes o mal formateados" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
@@ -19,10 +19,9 @@ export async function POST(req) {
     }
 
     const venta = data.venta;
+    // Se validan solo los campos requeridos para el procedimiento
     const requiredVentaFields = [
       "ven_precio_total",
-      "ven_hora",
-      "ven_fecha",
       "ven_tipo_pago",
       "ven_tipo",
       "ven_direccion",
@@ -48,7 +47,7 @@ export async function POST(req) {
       }
     }
 
-    const pool = await getRootPool();
+    const pool = await getUserPool(req);
     if (!pool) {
       throw new Error("No se pudo obtener la conexión a la base de datos");
     }
@@ -57,12 +56,12 @@ export async function POST(req) {
     try {
       await connection.beginTransaction();
 
-      const [ventaResult] = await connection.query(
-        "INSERT INTO `ElBuenGusto`.`VENTA` (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      // Llamada al procedimiento almacenado RegistrarVenta
+      // Parámetros: precio_total, tipo_pago, tipo_venta, direccion, documento_cliente, documento_empleado
+      await connection.query(
+        "CALL RegistrarVenta(?, ?, ?, ?, ?, ?)",
         [
           venta.ven_precio_total,
-          venta.ven_hora,
-          venta.ven_fecha,
           venta.ven_tipo_pago,
           venta.ven_tipo,
           venta.ven_direccion,
@@ -70,16 +69,18 @@ export async function POST(req) {
           venta.pes_documento
         ]
       );
-      const ven_id_venta = ventaResult.insertId;
+      // Obtener el ID insertado
+      const [idResult] = await connection.query("SELECT LAST_INSERT_ID() as ven_id_venta");
+      const ven_id_venta = idResult[0].ven_id_venta;
 
+      // Para cada detalle, llamar al procedimiento RegistrarDetalleVenta
+      // Parámetros: id_venta, cantidad_producto, codigo_producto, id_promocion
       for (const det of data.detalle) {
         const pro_codigo = det.pro_codigo !== undefined ? det.pro_codigo : null;
         const prm_id = det.prm_id !== undefined ? det.prm_id : null;
-        const pre_codigo = det.pre_codigo !== undefined ? det.pre_codigo : null;
-
         await connection.query(
-          "INSERT INTO `ElBuenGusto`.`DETALLE_VENTA` (ven_id_venta, det_cantidad_producto, pro_codigo, prm_id, pre_codigo) VALUES (?, ?, ?, ?, ?)",
-          [ven_id_venta, det.det_cantidad_producto, pro_codigo, prm_id, pre_codigo]
+          "CALL RegistrarDetalleVenta(?, ?, ?, ?)",
+          [ven_id_venta, det.det_cantidad_producto, pro_codigo, prm_id]
         );
       }
 

@@ -217,7 +217,7 @@ BEGIN
     );
 END //
 
-CREATE PROCEDURE CierreCajaDiario()
+CREATE PROCEDURE CierreCajaDiario(IN fecha_param DATE)
 BEGIN
     SELECT 
         fecha,
@@ -225,7 +225,7 @@ BEGIN
         SUM(ven_precio_total) AS total_dia,
         COUNT(*) AS transacciones
     FROM VISTA_VENTAS_DIARIAS
-    WHERE fecha = CURDATE()
+    WHERE fecha = COALESCE(fecha_param, CURDATE())
     GROUP BY ven_tipo_pago, fecha;
 END //
 
