@@ -19,9 +19,9 @@ export default function ListaTablas({ onSelectTable, selectedTable }) {
   }, []);
 
   return (
-    <aside className="sidebar">
-      <h2 className="sidebar-title">Tablas</h2>
-      <p className="sidebar-info">
+    <aside className="w-[25%] bg-gray-100 p-5 h-[80vh] overflow-y-auto">
+      <h2 className="text-xl font-bold mb-2">Tablas</h2>
+      <p className="text-sm mb-4">
         Tenga en consideración que solo se muestran las tablas a las cuales tiene acceso.
       </p>
       {tablas.map((tabla, index) => {
@@ -30,7 +30,7 @@ export default function ListaTablas({ onSelectTable, selectedTable }) {
           <button
             key={index}
             onClick={() => onSelectTable(nombreTabla)}
-            className={`table-button ${selectedTable === nombreTabla ? 'selected' : ''}`}
+            className={`block w-full p-2 mb-2 bg-sky-300 text-black rounded text-left cursor-pointer ${selectedTable === nombreTabla ? 'ring-2 ring-blue-500' : ''}`}
           >
             {nombreTabla}
           </button>
