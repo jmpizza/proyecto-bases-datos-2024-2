@@ -180,7 +180,7 @@ export default function Dashboard() {
                 onChange={(e) => setInputData(e.target.value)}
                 className="p-2 w-2/3 mr-2 border rounded"
               />
-              <button onClick={handleInsert} className="p-2 px-4 bg-blue-500 text-white rounded">
+              <button onClick={handleInsert} className="p-2 px-4 bg-sky-300 text-black hover:bg-sky-400 rounded">
                 Insertar
               </button>
             </div>
