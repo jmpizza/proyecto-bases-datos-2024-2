@@ -56,6 +56,7 @@ El objetivo de este proyecto es diseñar e implementar un sistema de base de dat
    ```sh
    npm run dev
    ```
+7. Ingresar a la url http://localhost:3000
 
 ## Licencia
 
