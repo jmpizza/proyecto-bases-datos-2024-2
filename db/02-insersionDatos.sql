@@ -817,6 +817,436 @@ VALUES
   ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
   ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 37),
   ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 38);
+  
+-- Venta 1: Solo productos internos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (18000, '10:30:00', '2025-03-04 10:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Centro', 101123456, 100234567);
+
+-- Detalles Venta 1: 2 unidades de Pan de Trigo (pro_codigo = 1) y 1 unidad de Tarta de Manzana (pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 2: Venta a domicilio (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (44000, '12:00:00', '2025-03-04 12:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 123 #45-67', 101234567, 100234567);
+
+-- Detalles Venta 2: 1 Bizcocho de Chocolate (pro_codigo = 3), 3 Galletas de Avena (pro_codigo = 4) y 2 Croissants (pro_codigo = 5)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 4, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL);
+
+-- Venta 3: Venta en tienda (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (32400, '14:15:00', '2025-03-04 14:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Norte', 101345678, 100234567);
+
+-- Detalles Venta 3: 2 Pan de Centeno (pro_codigo = 6), 2 Pan de Avena (pro_codigo = 7), 1 Pan de Molde (pro_codigo = 8),
+-- 1 Pan Integral (pro_codigo = 9) y 3 Pan Francés (pro_codigo = 10)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 6, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 7, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 8, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 9, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 10, NULL);
+
+-- Venta 4: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (16000, '15:00:00', '2025-03-04 15:00:00', 'efectivo', 'Venta en tienda', 'Sucursal Sur', 101456789, 100234567);
+
+-- Detalles Venta 4: 2 Pan de Trigo (interno, pro_codigo = 1) y 5 unidades de Harina de trigo Coca-Cola (externo, pre_codigo = 26)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 5, NULL, 26);
+
+-- Venta 5: Venta con solo productos externos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '16:30:00', '2025-03-04 16:30:00', 'tarjeta', 'Venta a domicilio', 'Calle 456 #78-90', 101567890, 100234567);
+
+-- Detalles Venta 5: 2 Leche líquida Pepsico (externo, pre_codigo = 27), 3 Azúcar moreno Hershey's (externo, pre_codigo = 28)
+-- y 1 Cocoa en polvo Nestlé (externo, pre_codigo = 30)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 27),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 28),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 30);
+
+-- Venta 6: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (24000, '17:45:00', '2025-03-04 17:45:00', 'tarjeta', 'Venta a domicilio', 'Calle 789 #12-34', 101678901, 100234567);
+
+-- Detalles Venta 6: 1 Croissants (interno, pro_codigo = 5), 2 Mermelada Smucker's (externo, pre_codigo = 31)
+-- y 1 Tarta de Manzana (interno, pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 31),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 7: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (23000, '18:30:00', '2025-03-04 18:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Este', 101789012, 100234567);
+
+-- Detalles Venta 7: 1 Bizcocho de Chocolate (interno, pro_codigo = 3) y 2 Leche condensada La Lechera (externo, pre_codigo = 33)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 33);
+
+-- Venta 8: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (15500, '19:15:00', '2025-03-04 19:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Oeste', 101890123, 100789012);
+
+-- Detalles Venta 8: 2 Croissants (interno, pro_codigo = 5) y 1 Chispas de chocolate M&M's (externo, pre_codigo = 35)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 35);
+
+-- Venta 9: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '20:00:00', '2025-03-04 20:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 321 #98-76', 101901234, 100789012);
+
+-- Detalles Venta 9: 1 Tarta de Manzana (interno, pro_codigo = 2), 2 Pan Francés (interno, pro_codigo = 10)
+-- y 1 Galletas Oreo (externo, pre_codigo = 36)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 10, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 36);
+
+-- Venta 10: Venta mixta con varios productos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (14500, '20:45:00', '2025-03-04 20:45:00', 'efectivo', 'Venta en tienda', 'Sucursal Central', 102012345, 100789012);
+
+-- Detalles Venta 10: 2 Pan de Trigo (interno, pro_codigo = 1), 3 Vainilla extracto McCormick (externo, pre_codigo = 37)
+-- y 1 Sirope de maíz Karo (externo, pre_codigo = 38)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 37),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 38);
+
+-- Venta 1: Solo productos internos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (18000, '10:30:00', '2025-03-03 10:30:00', 'tarjeta', 'Venta en tienda', 'Sucursal Centro', 101123456, 100234567);
+
+-- Detalles Venta 1: 2 unidades de Pan de Trigo (pro_codigo = 1) y 1 unidad de Tarta de Manzana (pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 2: Venta a domicilio (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (44000, '12:00:00', '2025-03-03 12:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 123 #45-67', 101234567, 100234567);
+
+-- Detalles Venta 2: 1 Bizcocho de Chocolate (pro_codigo = 3), 3 Galletas de Avena (pro_codigo = 4) y 2 Croissants (pro_codigo = 5)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 4, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL);
+
+-- Venta 3: Venta en tienda (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (32400, '14:15:00', '2025-03-03 14:15:00', 'tarjeta', 'Venta en tienda', 'Sucursal Norte', 101345678, 100234567);
+
+-- Detalles Venta 3: 2 Pan de Centeno (pro_codigo = 6), 2 Pan de Avena (pro_codigo = 7), 1 Pan de Molde (pro_codigo = 8),
+-- 1 Pan Integral (pro_codigo = 9) y 3 Pan Francés (pro_codigo = 10)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 6, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 7, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 8, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 9, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 10, NULL);
+
+-- Venta 4: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (16000, '15:00:00', '2025-03-03 15:00:00', 'tarjeta', 'Venta en tienda', 'Sucursal Sur', 101456789, 100234567);
+
+-- Detalles Venta 4: 2 Pan de Trigo (interno, pro_codigo = 1) y 5 unidades de Harina de trigo Coca-Cola (externo, pre_codigo = 26)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 5, NULL, 26);
+
+-- Venta 5: Venta con solo productos externos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '16:30:00', '2025-03-03 16:30:00', 'tarjeta', 'Venta a domicilio', 'Calle 456 #78-90', 101567890, 100234567);
+
+-- Detalles Venta 5: 2 Leche líquida Pepsico (externo, pre_codigo = 27), 3 Azúcar moreno Hershey's (externo, pre_codigo = 28)
+-- y 1 Cocoa en polvo Nestlé (externo, pre_codigo = 30)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 27),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 28),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 30);
+
+-- Venta 6: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (24000, '17:45:00', '2025-03-03 17:45:00', 'tarjeta', 'Venta a domicilio', 'Calle 789 #12-34', 101678901, 100234567);
+
+-- Detalles Venta 6: 1 Croissants (interno, pro_codigo = 5), 2 Mermelada Smucker's (externo, pre_codigo = 31)
+-- y 1 Tarta de Manzana (interno, pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 31),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 7: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (23000, '18:30:00', '2025-03-03 18:30:00', 'tarjeta', 'Venta en tienda', 'Sucursal Este', 101789012, 100234567);
+
+-- Detalles Venta 7: 1 Bizcocho de Chocolate (interno, pro_codigo = 3) y 2 Leche condensada La Lechera (externo, pre_codigo = 33)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 33);
+
+-- Venta 8: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (15500, '19:15:00', '2025-03-03 19:15:00', 'tarjeta', 'Venta en tienda', 'Sucursal Oeste', 101890123, 100789012);
+
+-- Detalles Venta 8: 2 Croissants (interno, pro_codigo = 5) y 1 Chispas de chocolate M&M's (externo, pre_codigo = 35)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 35);
+
+-- Venta 9: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '20:00:00', '2025-03-03 20:00:00', 'tarjeta', 'Venta a domicilio', 'Calle 321 #98-76', 101901234, 100789012);
+
+-- Detalles Venta 9: 1 Tarta de Manzana (interno, pro_codigo = 2), 2 Pan Francés (interno, pro_codigo = 10)
+-- y 1 Galletas Oreo (externo, pre_codigo = 36)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 10, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 36);
+
+-- Venta 10: Venta mixta con varios productos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (14500, '20:45:00', '2025-03-03 20:45:00', 'tarjeta', 'Venta en tienda', 'Sucursal Central', 102012345, 100789012);
+
+-- Detalles Venta 10: 2 Pan de Trigo (interno, pro_codigo = 1), 3 Vainilla extracto McCormick (externo, pre_codigo = 37)
+-- y 1 Sirope de maíz Karo (externo, pre_codigo = 38)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 37),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 38);
+
+-- Venta 1: Solo productos internos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (18000, '10:30:00', '2025-03-02 10:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Centro', 101123456, 100234567);
+
+-- Detalles Venta 1: 2 unidades de Pan de Trigo (pro_codigo = 1) y 1 unidad de Tarta de Manzana (pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 2: Venta a domicilio (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (44000, '12:00:00', '2025-03-02 12:00:00', 'efectivo', 'Venta a domicilio', 'Calle 123 #45-67', 101234567, 100234567);
+
+-- Detalles Venta 2: 1 Bizcocho de Chocolate (pro_codigo = 3), 3 Galletas de Avena (pro_codigo = 4) y 2 Croissants (pro_codigo = 5)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 4, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL);
+
+-- Venta 3: Venta en tienda (solo productos internos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (32400, '14:15:00', '2025-03-02 14:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Norte', 101345678, 100234567);
+
+-- Detalles Venta 3: 2 Pan de Centeno (pro_codigo = 6), 2 Pan de Avena (pro_codigo = 7), 1 Pan de Molde (pro_codigo = 8),
+-- 1 Pan Integral (pro_codigo = 9) y 3 Pan Francés (pro_codigo = 10)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 6, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 7, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 8, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 9, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, 10, NULL);
+
+-- Venta 4: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (16000, '15:00:00', '2025-03-02 15:00:00', 'efectivo', 'Venta en tienda', 'Sucursal Sur', 101456789, 100234567);
+
+-- Detalles Venta 4: 2 Pan de Trigo (interno, pro_codigo = 1) y 5 unidades de Harina de trigo Coca-Cola (externo, pre_codigo = 26)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 5, NULL, 26);
+
+-- Venta 5: Venta con solo productos externos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '16:30:00', '2025-03-02 16:30:00', 'efectivo', 'Venta a domicilio', 'Calle 456 #78-90', 101567890, 100234567);
+
+-- Detalles Venta 5: 2 Leche líquida Pepsico (externo, pre_codigo = 27), 3 Azúcar moreno Hershey's (externo, pre_codigo = 28)
+-- y 1 Cocoa en polvo Nestlé (externo, pre_codigo = 30)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 27),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 28),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 30);
+
+-- Venta 6: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (24000, '17:45:00', '2025-03-02 17:45:00', 'efectivo', 'Venta a domicilio', 'Calle 789 #12-34', 101678901, 100234567);
+
+-- Detalles Venta 6: 1 Croissants (interno, pro_codigo = 5), 2 Mermelada Smucker's (externo, pre_codigo = 31)
+-- y 1 Tarta de Manzana (interno, pro_codigo = 2)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 31),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL);
+
+-- Venta 7: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (23000, '18:30:00', '2025-03-02 18:30:00', 'efectivo', 'Venta en tienda', 'Sucursal Este', 101789012, 100234567);
+
+-- Detalles Venta 7: 1 Bizcocho de Chocolate (interno, pro_codigo = 3) y 2 Leche condensada La Lechera (externo, pre_codigo = 33)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 3, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, NULL, 33);
+
+-- Venta 8: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (15500, '19:15:00', '2025-03-02 19:15:00', 'efectivo', 'Venta en tienda', 'Sucursal Oeste', 101890123, 100789012);
+
+-- Detalles Venta 8: 2 Croissants (interno, pro_codigo = 5) y 1 Chispas de chocolate M&M's (externo, pre_codigo = 35)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 5, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 35);
+
+-- Venta 9: Venta mixta (internos y externos)
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (22000, '20:00:00', '2025-03-02 20:00:00', 'efectivo', 'Venta a domicilio', 'Calle 321 #98-76', 101901234, 100789012);
+
+-- Detalles Venta 9: 1 Tarta de Manzana (interno, pro_codigo = 2), 2 Pan Francés (interno, pro_codigo = 10)
+-- y 1 Galletas Oreo (externo, pre_codigo = 36)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, 2, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 10, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 36);
+
+-- Venta 10: Venta mixta con varios productos
+INSERT INTO VENTA 
+  (ven_precio_total, ven_hora, ven_fecha, ven_tipo_pago, ven_tipo, ven_direccion, per_documento, pes_documento)
+VALUES 
+  (14500, '20:45:00', '2025-03-02 20:45:00', 'efectivo', 'Venta en tienda', 'Sucursal Central', 102012345, 100789012);
+
+-- Detalles Venta 10: 2 Pan de Trigo (interno, pro_codigo = 1), 3 Vainilla extracto McCormick (externo, pre_codigo = 37)
+-- y 1 Sirope de maíz Karo (externo, pre_codigo = 38)
+INSERT INTO DETALLE_VENTA 
+  (ven_id_venta, det_cantidad_producto, pro_codigo, pre_codigo)
+VALUES 
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 2, 1, NULL),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 3, NULL, 37),
+  ((SELECT MAX(ven_id_venta) FROM VENTA), 1, NULL, 38);
+
 
 -- =====================================================
 -- Inserción de datos en DEVOLUCION
@@ -1024,4 +1454,3 @@ INSERT INTO `ElBuenGusto`.`USUARIO` (`per_documento`, `usr_clave`, `usr_rol`) VA
 (100789012, 'CajeroClave', 'CAJERO'),
 (100890123, 'PasteleroClave', 'PASTELERO'),
 (100901234, 'PanaderoClave', 'PANADERO');
-
